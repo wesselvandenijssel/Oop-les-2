@@ -10,6 +10,6 @@ public class Persoon {
 
     @Override
     public String toString() {
-        return naam + ", leeftijd " + leeftijd + " jaar";
+        return naam + "; leeftijd " + leeftijd + " jaar";
     }
 }
