@@ -7,12 +7,18 @@ public class Voetbalclub {
     // Constructor
     public Voetbalclub(String naam) {
         this.naam = naam;
+
+        if (naam == null || naam == "") {
+            naam = "FC";
+        }
+//        this.naam = naam;
     }
 
     // Method to process the result
     public void verwerkResultaat(char ch) {
         if (ch == 'w') {
             aantalGewonnen++;
+
         } else if (ch == 'g') {
             aantalGelijk++;
         } else if (ch == 'v') {
