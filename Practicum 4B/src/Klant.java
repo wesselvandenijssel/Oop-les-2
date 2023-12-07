@@ -2,7 +2,7 @@ public class Klant {
     private String naam;
     private double korting;
 
-    public Klant(String nm) {
+    public Klant(String nm, int i) {
         this.naam = nm;
         this.korting = 0.0;
     }
