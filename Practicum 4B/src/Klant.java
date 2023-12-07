@@ -2,13 +2,13 @@ public class Klant {
     private String naam;
     private double korting;
 
-    public Klant(String naam) {
-        this.naam = naam;
+    public Klant(String nm) {
+        this.naam = nm;
         this.korting = 0.0;
     }
 
-    public void setKorting(double korting) {
-        this.korting = korting;
+    public void setKorting(double kP) {
+        this.korting = kP;
     }
 
     public double getKorting() {
