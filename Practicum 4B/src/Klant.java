@@ -1,22 +1,27 @@
 public class Klant {
     private String naam;
-    private double korting;
+    private double kortingsPercantage;
 
-    public Klant(String nm, int i) {
-        this.naam = nm;
-        this.korting = 0.0;
+    public Klant(String nm){
+        naam = nm;
     }
 
-    public void setKorting(double kP) {
-        this.korting = kP;
+    public void setKorting(double kP){
+        if (kP <0){
+            kortingsPercantage = kP *-1;
+        }
+        else{
+            kortingsPercantage = kP;
+        }
+
     }
 
-    public double getKorting() {
-        return korting;
+    public double getKorting(){
+        return kortingsPercantage;
     }
 
     @Override
-    public String toString() {
-        return "op naam van: " + naam + " (korting: " + korting + "%)";
+    public String toString(){
+        return "op naam van: " + naam + " (korting: " + kortingsPercantage + "%)";
     }
 }

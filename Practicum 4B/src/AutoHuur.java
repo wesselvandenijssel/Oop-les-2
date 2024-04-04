@@ -1,50 +1,80 @@
 public class AutoHuur {
-    private int aantalDagen;
-    private Auto gehuurdeAuto;
+    private int aantaldagen;
+
     private Klant huurder;
 
-    public void setAantalDagen(int aD) {
-        this.aantalDagen = aD;
+    private Auto gehuurdeAuto;
+
+    public AutoHuur(){
+
     }
 
-    public int getAantalDagen() {
-        return aantalDagen;
+    public void setAantalDagen(int aD){
+        if(aD < 0){
+            aantaldagen = 0;
+        }
+        else{
+            aantaldagen =aD;
+        }
+
     }
 
-    public void setGehuurdeAuto(Auto gA) {
-        this.gehuurdeAuto = gA;
+    public int getAantalDagen(){
+        return aantaldagen;
     }
 
-    public Auto getGehuurdeAuto() {
+    public void setGehuurdeAuto(Auto gA){
+        gehuurdeAuto = gA;
+    }
+
+    public Auto getGehuurdeAuto(){
         return gehuurdeAuto;
     }
 
-    public void setHuurder(Klant k) {
-        this.huurder = k;
+    public void setHuurder(Klant k){
+        huurder = k;
     }
 
-    public Klant getHuurder() {
+    public Klant getHuurder(){
         return huurder;
     }
 
-    @Override
-    public String toString() {
-        if (gehuurdeAuto == null && huurder == null) {
-            return "er is geen auto bekend\n" + "er is geen huurder bekend\n" +
-                    "aantal dagen: " + aantalDagen + " en dat kost " + totaalPrijs();
-        } else if (gehuurdeAuto == null) {
-            return "er is geen auto bekend\n" + huurder + "\n" +
-                    "aantal dagen: " + aantalDagen + " en dat kost " + totaalPrijs();
-        } else {
-            return gehuurdeAuto + "\n" + (huurder == null ? "er is geen huurder bekend" : huurder) +
-                    "\n" + "aantal dagen: " + aantalDagen + " en dat kost " + totaalPrijs();
+    public double totaalPrijs (){
+        if(gehuurdeAuto == null){
+            return 0;
+        }
+        else if(huurder == null){
+            return 0;
+        }
+        else{
+            return this.getAantalDagen() * (1-0.1*huurder.getKorting()) * gehuurdeAuto.getPrijsPerDag();
         }
     }
 
-    private double totaalPrijs() {
-        if (gehuurdeAuto == null || huurder == null) {
-            return 0.0;
+    @Override
+    public String toString(){
+        String gehuurde_auto;
+        String gehuurddoor;
+        double totaalkosten = 1;
+        if (gehuurdeAuto == null){
+            gehuurde_auto = "er is geen auto bekend";
+            totaalkosten = 0;
         }
-        return aantalDagen * gehuurdeAuto.getPrijsPerDag() * (1 - huurder.getKorting() / 100);
+        else {
+            gehuurde_auto = String.valueOf(gehuurdeAuto);
+        }
+        if (huurder == null){
+            gehuurddoor = "er is geen huurder bekend";
+            totaalkosten = 0;
+        }
+        else {
+            gehuurddoor = String.valueOf(huurder);
+
+        }
+        if (totaalkosten != 0 ){
+            totaalkosten = totaalPrijs();
+        }
+
+        return gehuurde_auto + "\n" + gehuurddoor + "\n" + "aantal dagen: " + aantaldagen + " en dat kost " + totaalkosten;
     }
 }
